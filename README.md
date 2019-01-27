@@ -13,3 +13,4 @@ go build duckspeak.go
 - `-l /path/` Add fame from a file or from all folders in the dictionary
 - `-g n`      Generate n random sentences
 - `-c`        Clear dictionary
+- `-h`        Help
