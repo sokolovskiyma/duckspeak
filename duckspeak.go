@@ -128,11 +128,14 @@ func addToDictionary(text string) {
 	// Word count in text // Счетчик слов в тексте
 	var wordCount int
 	// Regex // Регулярки
-	onlyChar := regexp.MustCompile(`[^A-zА-я ]`)
+	commas := regexp.MustCompile(`,`)
+	onlyChar := regexp.MustCompile(`[^A-zА-я, ]`)
 	doubleSpace := regexp.MustCompile(` +`)
 	// Splits text into sentences // Разбивает текст на предложения
 	sentences := regexp.MustCompile(`[\.\?\!\:\;…]{1,3}\s`).Split(text, -1)
 	for _, sentence := range sentences {
+		// Separates the commas
+		sentence = commas.ReplaceAllString(sentence, " , ")
 		// Clears offers from !letters // Очищает предложения от !букв
 		sentence = onlyChar.ReplaceAllString(sentence, " ")
 		sentence = doubleSpace.ReplaceAllString(sentence, " ")
@@ -209,7 +212,11 @@ func generateSentence() string {
 		// Selects a random word from a temporary array, // Выбирает случайное слово из временного массива,
 		// adds it to the resulting array // добавляет его в итоговый массив
 		currentWord = temp[rand.Intn(len(temp))]
-		resultArr = append(resultArr, currentWord)
+		if currentWord == "," {
+			resultArr[len(resultArr)-1] += ","
+		} else {
+			resultArr = append(resultArr, currentWord)
+		}
 	}
 	// Makes the first letter uppercase, cuts off " *END*", adds a dot to the end // Делает первую букву заглавной, отсекает "*END*", добавляет точку в конец
 	resultArr[0] = strings.Title(resultArr[0])
@@ -240,7 +247,7 @@ func clearDictionary() {
 	// If the file is UNAVAILABLE - does nothing // Если файл НЕДОСТУПЕН - не делает ничего
 	if _, err := os.Stat(DicName); os.IsNotExist(err) {
 		fmt.Println("Nothing to do")
-		// If the file is available, deletes it // Если файл доступен удаляет его
+		// If the file is available, deletes it  // Если файл доступен удаляет его
 	} else {
 		err := os.Remove(DicName)
 		if err != nil {
