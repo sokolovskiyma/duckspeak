@@ -152,11 +152,7 @@ func addToDictionary(text string) {
 			for index, word := range words {
 				// If the word can be the beginning of a sentence then the key to it will be *START* // Если слово может быть в начале предложения то ключом к нему будет *START*
 				if index == 0 {
-					if _, avalable := Dictionary["*START*"][word]; avalable {
-						Dictionary["*START*"][word]++
-					} else {
-						Dictionary["*START*"][word] = 1
-					}
+					Dictionary["*START*"][word]++
 				} else {
 					// If the previous word is not in the dictionary, // Если предыдущее слово не в словаре,
 					// adds it and initializes it with an empty map[string]int value{} // добавляет его и инициализирует пустым значением map[string]int{}
@@ -165,13 +161,7 @@ func addToDictionary(text string) {
 					}
 					// If the word is already in the values of the previous, // Если слово уже есть в значениях предыдущего,
 					// increases the number of occurrences by one // увеличивает количество вхождений на единицу
-					if _, avalable := Dictionary[words[index-1]][word]; avalable {
-						Dictionary[words[index-1]][word]++
-						// If the word is not in the values of the previous, // Если слова нет в значениях предыдущего,
-						// adds it with the number of occurrences = 1 // добавляет его с количеством вхождений = 1
-					} else {
-						Dictionary[words[index-1]][word] = 1
-					}
+					Dictionary[words[index-1]][word]++
 				}
 
 				// If this is the last word adds to it the key *END* // Если это последнее слово добавляет к немк ключ *END*
@@ -179,11 +169,7 @@ func addToDictionary(text string) {
 					if _, avalable := Dictionary[words[index]]; !avalable {
 						Dictionary[words[index]] = map[string]int{}
 					}
-					if _, avalable := Dictionary[words[index]]["*END*"]; avalable {
-						Dictionary[words[index]]["*END*"]++
-					} else {
-						Dictionary[words[index]]["*END*"] = 1
-					}
+					Dictionary[words[index]]["*END*"]++
 				}
 				// Increases the count of the total number of words // Увеличивает счетчик общего количества слов
 				wordCount++
