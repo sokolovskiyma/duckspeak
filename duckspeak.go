@@ -15,7 +15,7 @@ import (
 )
 
 // Declares Dictionary // Обявляет Словарь
-var Dictionary = map[string]map[string]int{}
+var Dictionary = make(map[string]map[string]int)
 
 // File name // Имя файла
 var DicName = "dictionary.gob"
