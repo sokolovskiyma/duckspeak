@@ -156,7 +156,7 @@ func addToDictionary(text string) {
 				} else {
 					// If the previous word is not in the dictionary, // Если предыдущее слово не в словаре,
 					// adds it and initializes it with an empty map[string]int value{} // добавляет его и инициализирует пустым значением map[string]int{}
-					if _, avalable := Dictionary[words[index-1]]; !avalable {
+					if _, available := Dictionary[words[index-1]]; !available {
 						Dictionary[words[index-1]] = map[string]int{}
 					}
 					// If the word is already in the values of the previous, // Если слово уже есть в значениях предыдущего,
@@ -166,7 +166,7 @@ func addToDictionary(text string) {
 
 				// If this is the last word adds to it the key *END* // Если это последнее слово добавляет к немк ключ *END*
 				if index == len(words)-1 {
-					if _, avalable := Dictionary[words[index]]; !avalable {
+					if _, available := Dictionary[words[index]]; !available {
 						Dictionary[words[index]] = map[string]int{}
 					}
 					Dictionary[words[index]]["*END*"]++
