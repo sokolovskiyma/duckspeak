@@ -14,7 +14,7 @@ go build duckspeak.go
 ```
 
 # Usage
-- `-l /path/` Add fame from a file or from all folders in the dictionary
+- `-l /path/` Adds words to the dictionary from one file or from the entire directory
 - `-g n`      Generate n random sentences
 - `-c`        Clear dictionary
 - `-h`        Help
