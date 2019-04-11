@@ -20,8 +20,8 @@ var Dictionary = make(map[string]map[string]int)
 // File name // Имя файла
 var DicName = "dictionary.gob"
 
-// Loads the dictionary from disk, // Загружает Словарь с диска,
-// or if it is empty, sets the initial values // или если он пустой проставляет начальные значения
+// Loads the dictionary from disk, or if it is empty, sets the initial values 
+// Загружает Словарь с диска, или если он пустой проставляет начальные значения
 func init() {
 	// If the file is UNAVALIBLE, initializes the initial value of the Dictionary // Если файл НЕДОСТУПЕН, инициализирует начальное значение Словаря
 	if _, err := os.Stat(DicName); os.IsNotExist(err) {
