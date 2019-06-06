@@ -128,14 +128,15 @@ func addToDictionary(text string) {
 	// Word count in text // Счетчик слов в тексте
 	var wordCount int
 	// Regex // Регулярки
-	commas := regexp.MustCompile(`,`)
+	// commas := regexp.MustCompile(`,`)
 	onlyChar := regexp.MustCompile(`[^A-zА-я, ]`)
 	doubleSpace := regexp.MustCompile(` +`)
 	// Splits text into sentences // Разбивает текст на предложения
 	sentences := regexp.MustCompile(`[\.\?\!\:\;…]{1,3}\s`).Split(text, -1)
 	for _, sentence := range sentences {
 		// Separates the commas
-		sentence = commas.ReplaceAllString(sentence, " , ")
+		// sentence = commas.ReplaceAllString(sentence, " , ")
+		sentence = strings.Replace(sentence, ",", " , ", -1)
 		// Clears offers from !letters // Очищает предложения от !букв
 		sentence = onlyChar.ReplaceAllString(sentence, " ")
 		sentence = doubleSpace.ReplaceAllString(sentence, " ")
